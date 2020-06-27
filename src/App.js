@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Chart from './components/chart2';
+import Main from './components/MainComponent';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
 
   render() {
     return (
-      <Chart />
+      <Main />
     );
   }
 }

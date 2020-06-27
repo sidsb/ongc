@@ -14,7 +14,7 @@ export default function Chart() {
             ndata.push(val.toString(10));
         }
         setChartData({
-            labels: db.labels,
+            labels: db[0].labels,
             datasets: [{
                 label: 'Output',
                 backgroundColor: 'rgba(249, 161, 104 ,0.4)',
@@ -24,7 +24,7 @@ export default function Chart() {
                 pointBackgroundColor: 'rgba(244, 89, 33,0.8)',
                 pointHoverBackgroundColor: 'rgba(241, 251, 25,0.9)',
                 pointHoverRadius: '5',
-                data: ndata
+                data: db[0].oil
             }
             ]
         })
