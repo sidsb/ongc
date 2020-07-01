@@ -37,3 +37,16 @@
     transform: rotate(360deg);
   }
 }
+
+.user_ip {
+  background-color: #c1d8d4;
+  padding: 2em;
+}
+
+.user_ip_item {
+  margin: 1em;
+}
+
+.time_input {
+  width: 70px;
+}
