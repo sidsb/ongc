@@ -12,7 +12,6 @@ export class Piechart extends Component {
     }
 
     render() {
-        console.log("pie ke andar");
 
         return (
             <Pie

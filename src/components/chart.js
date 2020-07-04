@@ -1,15 +1,18 @@
-import React, { Component } from 'react'
-import { Line } from 'react-chartjs-2';
+import React, { Component } from 'react';
+import { Modal, ModalBody } from 'reactstrap';
 import Linechart from './linechart';
 import db from '../data.json';
 import Piechart from './piechart';
+import Areachart from './areachart';
 
 export class Chart extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
+            is_area_open: false,
         };
+        this.area_Chart_Toggle = this.area_Chart_Toggle.bind(this);
     }
 
     graph_label(arr, st, et) {
@@ -56,6 +59,10 @@ export class Chart extends Component {
         return newarr;
     }
 
+    area_Chart_Toggle() {
+        this.setState({ is_area_open: !this.state.is_area_open });
+    }
+
     render() {
 
         let x = parseInt(this.props.field);
@@ -77,37 +84,54 @@ export class Chart extends Component {
         return (
             <div key={this.props.field} className="container-fluid" >
                 <div className="row">
-                    <div className="col-12 col-md-6">
-                        <div className="card">
-                            <div className="card-body">
-                                <Linechart labels={gr_labels} data={oil_data} datatype="Oil" field={this.props.field} />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="card">
-                            <div className="card-body">
-                                <Piechart labels={gr_labels} data={oil_data} datatype="Oil" field={this.props.field} />
-                            </div>
-                        </div>
+                    <div className="col-12">
+                        <button className="btn btn-secondary btn-block" onClick={this.area_Chart_Toggle}>Click to see Area Chart of the field</button>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12 col-md-6">
-                        <div className="card">
-                            <div className="card-body">
-                                <Linechart labels={gr_labels} data={water_data} datatype="Water" field={this.props.field} />
+                    <div className="col-12">
+                        <div className="row ">
+                            <div className="col-12 col-md-6">
+                                <div className="card">
+                                    <div className="card-body">
+                                        <Linechart labels={gr_labels} data={oil_data} datatype="Oil" field={this.props.field} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12 col-md-6">
+                                <div className="card">
+                                    <div className="card-body">
+                                        <Piechart labels={gr_labels} data={oil_data} datatype="Oil" field={this.props.field} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-12 col-md-6">
-                        <div className="card">
-                            <div className="card-body">
-                                <Piechart labels={gr_labels} data={water_data} datatype="Water" field={this.props.field} />
+                        <div className="row">
+                            <div className="col-12 col-md-6">
+                                <div className="card">
+                                    <div className="card-body">
+                                        <Linechart labels={gr_labels} data={water_data} datatype="Water" field={this.props.field} />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12 col-md-6">
+                                <div className="card">
+                                    <div className="card-body">
+                                        <Piechart labels={gr_labels} data={water_data} datatype="Water" field={this.props.field} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <Modal isOpen={this.state.is_area_open} className="modal-dialog modal-lg">
+                    <button type="button" className="btn btn-primary btn-block" data-dismiss="modal" aria-label="Close" onClick={this.area_Chart_Toggle}>
+                        &times;
+                    </button>
+                    <div className="area">
+                        <Areachart labels={gr_labels} oildata={oil_data} waterdata={water_data} field={this.props.field} />
+                    </div>
+                </Modal>
             </div>
         );
     }
