@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Line } from 'react-chartjs-2';
+import Linechart from './linechart';
 import db from '../data.json';
+import Piechart from './piechart';
 
 export class Chart extends Component {
 
@@ -75,100 +77,38 @@ export class Chart extends Component {
         return (
             <div key={this.props.field} className="container-fluid" >
                 <div className="row">
-                    <div className="col-12">
+                    <div className="col-12 col-md-6">
                         <div className="card">
                             <div className="card-body">
-                                <Line data={{
-                                    labels: gr_labels,
-                                    datasets: [{
-                                        label: 'Oil',
-                                        backgroundColor: 'rgba(255, 195, 0 ,0.4)',
-                                        borderColor: [
-                                            'rgba(85, 85, 84 , 0.6)',
-                                        ],
-                                        pointBackgroundColor: 'rgba(244, 89, 33,0.8)',
-                                        pointHoverBackgroundColor: 'rgba(241, 251, 25,0.9)',
-                                        pointHoverRadius: '5',
-                                        data: oil_data
-                                    }
-                                    ]
-                                }}
-                                    options={{
-                                        responsive: true,
-                                        title: {
-                                            display: true,
-                                            text: "Oil in Field:" + (parseInt(this.props.field) + 1),
-                                            fontSize: 25
-                                        },
-                                        scales: {
-                                            xAxes: [{
-                                                scaleLabel: {
-                                                    display: true,
-                                                    labelString: "Time",
-                                                    fontColor: "red"
-                                                }
-                                            }],
-                                            yAxes: [{
-                                                scaleLabel: {
-                                                    display: true,
-                                                    labelString: "Oil",
-                                                    fontColor: "green"
-                                                }
-                                            }]
-                                        },
-                                    }}
-                                />
+                                <Linechart labels={gr_labels} data={oil_data} datatype="Oil" field={this.props.field} />
                             </div>
                         </div>
                     </div>
-                    <div className="col-12">
+                    <div className="col-12 col-md-6">
                         <div className="card">
                             <div className="card-body">
-                                <Line data={{
-                                    labels: gr_labels,
-                                    datasets: [{
-                                        label: 'Water',
-                                        backgroundColor: 'rgba(131, 243, 254 ,0.4)',
-                                        borderColor: [
-                                            'rgba(85, 85, 84 , 0.6)',
-                                        ],
-                                        pointBackgroundColor: 'rgba(244, 89, 33,0.8)',
-                                        pointHoverBackgroundColor: 'rgba(241, 251, 25,0.9)',
-                                        pointHoverRadius: '5',
-                                        data: water_data
-                                    }
-                                    ]
-                                }}
-                                    options={{
-                                        responsive: true,
-                                        title: {
-                                            display: true,
-                                            text: "Water in Field:" + (parseInt(this.props.field) + 1),
-                                            fontSize: 25
-                                        },
-                                        scales: {
-                                            xAxes: [{
-                                                scaleLabel: {
-                                                    display: true,
-                                                    labelString: "Time",
-                                                    fontColor: "red"
-                                                }
-                                            }],
-                                            yAxes: [{
-                                                scaleLabel: {
-                                                    display: true,
-                                                    labelString: "Water",
-                                                    fontColor: "green"
-                                                }
-                                            }]
-                                        },
-                                    }}
-                                />
+                                <Piechart labels={gr_labels} data={oil_data} datatype="Oil" field={this.props.field} />
                             </div>
                         </div>
                     </div>
                 </div>
-            </div >
+                <div className="row">
+                    <div className="col-12 col-md-6">
+                        <div className="card">
+                            <div className="card-body">
+                                <Linechart labels={gr_labels} data={water_data} datatype="Water" field={this.props.field} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <div className="card">
+                            <div className="card-body">
+                                <Piechart labels={gr_labels} data={water_data} datatype="Water" field={this.props.field} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
