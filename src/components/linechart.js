@@ -11,6 +11,8 @@ export default class Linechart extends Component {
     }
 
     render() {
+        let yaxestype = parseInt(this.props.ot) === 3 ? 'logarithmic' : 'linear';
+
 
         return (
             <Line data={{
@@ -33,24 +35,38 @@ export default class Linechart extends Component {
                     title: {
                         display: true,
                         text: this.props.datatype + " in Field:" + (parseInt(this.props.field) + 1),
-                        fontSize: 25
+                        fontSize: 25,
+                        fontColor: this.props.dark ? 'rgba(233, 247, 246,0.8)' : 'rgba(101, 102, 101,0.9)'
                     },
                     scales: {
                         xAxes: [{
                             scaleLabel: {
                                 display: true,
                                 labelString: "Time",
-                                fontColor: "red"
+                                fontColor: this.props.dark ? 'rgba(233, 247, 246,0.8)' : 'rgba(101, 102, 101,0.9)'
+                            },
+                            ticks: {
+                                fontColor: this.props.dark ? 'rgba(233, 247, 246,0.8)' : 'rgba(101, 102, 101,0.9)'
                             }
                         }],
                         yAxes: [{
+                            type: yaxestype,
                             scaleLabel: {
                                 display: true,
                                 labelString: this.props.datatype,
-                                fontColor: "green"
+                                fontColor: this.props.dark ? 'rgba(233, 247, 246,0.8)' : 'rgba(101, 102, 101,0.9)'
+                            },
+                            ticks: {
+                                fontColor: this.props.dark ? 'rgba(233, 247, 246,0.8)' : 'rgba(101, 102, 101,0.9)'
                             }
                         }]
+
                     },
+                    legend: {
+                        labels: {
+                            fontColor: this.props.dark ? 'rgba(233, 247, 246,0.8)' : 'rgba(101, 102, 101,0.9)'
+                        }
+                    }
                 }}
             />
         )

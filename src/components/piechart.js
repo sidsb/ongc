@@ -32,7 +32,8 @@ export class Piechart extends Component {
                     title: {
                         display: true,
                         text: this.props.datatype + " in Field:" + (parseInt(this.props.field) + 1),
-                        fontSize: 25
+                        fontSize: 25,
+                        fontColor: this.props.dark ? 'rgba(233, 247, 246,0.8)' : 'rgba(101, 102, 101,0.9)'
                     },
                     legend: {
                         display: false

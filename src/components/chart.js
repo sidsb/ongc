@@ -50,11 +50,6 @@ export class Chart extends Component {
                 newarr[i] = newarr[i] * 10;
             }
         }
-        else if (output_type == 3) {
-            for (let i = 0; i < newarr.length; ++i) {
-                newarr[i] = Math.floor(Math.log10(newarr[i]) * 10);
-            }
-        }
 
         return newarr;
     }
@@ -71,7 +66,8 @@ export class Chart extends Component {
         let output_type = parseInt(this.props.output_type);
         let start_val = parseInt(this.props.start_val);
         let end_val = parseInt(this.props.end_val);
-        console.log(start_val, end_val);
+        console.log('output_type', output_type);
+
 
 
         let oil_arr = this.change_data_type(output_type, db[x].oil, start_val, end_val);
@@ -85,7 +81,7 @@ export class Chart extends Component {
             <div key={this.props.field} className="container-fluid" >
                 <div className="row">
                     <div className="col-12">
-                        <button className="btn btn-secondary btn-block" onClick={this.area_Chart_Toggle}>Click to see Area Chart of the field</button>
+                        <button className="btn btn-primary btn-block" onClick={this.area_Chart_Toggle}>Click to see Area Chart</button>
                     </div>
                 </div>
                 <div className="row">
@@ -93,15 +89,15 @@ export class Chart extends Component {
                         <div className="row ">
                             <div className="col-12 col-md-6">
                                 <div className="card">
-                                    <div className="card-body">
-                                        <Linechart labels={gr_labels} data={oil_data} datatype="Oil" field={this.props.field} />
+                                    <div className="card-body" style={{ backgroundColor: this.props.dark ? 'rgb(107, 107, 107)' : 'rgb(247, 245, 245)' }}>
+                                        <Linechart labels={gr_labels} data={oil_data} datatype="Oil" field={this.props.field} dark={this.props.dark} ot={output_type} />
                                     </div>
                                 </div>
                             </div>
                             <div className="col-12 col-md-6">
                                 <div className="card">
-                                    <div className="card-body">
-                                        <Piechart labels={gr_labels} data={oil_data} datatype="Oil" field={this.props.field} />
+                                    <div className="card-body" style={{ backgroundColor: this.props.dark ? 'rgb(107, 107, 107)' : 'rgb(247, 245, 245)' }}>
+                                        <Piechart labels={gr_labels} data={oil_data} datatype="Oil" field={this.props.field} dark={this.props.dark} />
                                     </div>
                                 </div>
                             </div>
@@ -109,30 +105,32 @@ export class Chart extends Component {
                         <div className="row">
                             <div className="col-12 col-md-6">
                                 <div className="card">
-                                    <div className="card-body">
-                                        <Linechart labels={gr_labels} data={water_data} datatype="Water" field={this.props.field} />
+                                    <div className="card-body" style={{ backgroundColor: this.props.dark ? 'rgb(107, 107, 107)' : 'rgb(247, 245, 245)' }}>
+                                        <Linechart labels={gr_labels} data={water_data} datatype="Water" field={this.props.field} dark={this.props.dark} ot={output_type} />
                                     </div>
                                 </div>
                             </div>
                             <div className="col-12 col-md-6">
                                 <div className="card">
-                                    <div className="card-body">
-                                        <Piechart labels={gr_labels} data={water_data} datatype="Water" field={this.props.field} />
+                                    <div className="card-body" style={{ backgroundColor: this.props.dark ? 'rgb(107, 107, 107)' : 'rgb(247, 245, 245)' }}>
+                                        <Piechart labels={gr_labels} data={water_data} datatype="Water" field={this.props.field} dark={this.props.dark} />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <Modal isOpen={this.state.is_area_open} className="modal-dialog modal-lg">
-                    <button type="button" className="btn btn-primary btn-block" data-dismiss="modal" aria-label="Close" onClick={this.area_Chart_Toggle}>
-                        &times;
-                    </button>
-                    <div className="area">
-                        <Areachart labels={gr_labels} oildata={oil_data} waterdata={water_data} field={this.props.field} />
+                <Modal isOpen={this.state.is_area_open} className="modal-dialog modal-lg" >
+                    <div className="card" >
+                        <button type="button" className="btn btn-primary btn-block" data-dismiss="modal" aria-label="Close" onClick={this.area_Chart_Toggle}>
+                            &times;
+                        </button>
+                        <div className="area">
+                            <Areachart labels={gr_labels} oildata={oil_data} waterdata={water_data} field={this.props.field} />
+                        </div>
                     </div>
                 </Modal>
-            </div>
+            </div >
         );
     }
 }

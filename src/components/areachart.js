@@ -32,7 +32,7 @@ export default class Areachart extends Component {
                     title: {
                         display: true,
                         text: "Data in Field:" + (parseInt(this.props.field) + 1),
-                        fontSize: 25
+                        fontSize: 25,
                     },
                 }}
             />

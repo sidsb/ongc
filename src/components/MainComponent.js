@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Chart from './chart';
+import Switch from 'react-switch';
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ export default class Main extends React.Component {
             end_val: 1000,
             output_type: "1",
             sidebar_width: 0,
+            dark_mode: false
 
         };
 
@@ -23,6 +25,7 @@ export default class Main extends React.Component {
         this.output_type = this.output_type.bind(this);
         this.open_nav = this.open_nav.bind(this);
         this.close_nav = this.close_nav.bind(this);
+        this.enable_darkMode = this.enable_darkMode.bind(this);
     }
 
 
@@ -65,7 +68,12 @@ export default class Main extends React.Component {
 
 
     }
+    enable_darkMode() {
+        this.setState({ dark_mode: !this.state.dark_mode });
+    }
     render() {
+        console.log(this.state.dark_mode);
+
         return (
             <>
                 <div id="mySidebar" className="sidebar" style={{ width: this.state.sidebar_width }} >
@@ -94,17 +102,22 @@ export default class Main extends React.Component {
                         <button type="button" className="btn btn-success" value="3" onClick={this.output_type}>log</button>
                     </div>
                 </div>
-                <div id="main">
-                    <button type="button" className="openbtn" onClick={this.open_nav}>☰ Derived Outputs</button>
+                <div id="main" style={{ backgroundColor: this.state.dark_mode ? 'rgb(107, 107, 107)' : 'rgb(150, 250, 242)' }}>
+                    <button type="button" className="openbtn" onClick={this.open_nav} >☰ Derived Outputs</button>
+                    <Switch className="react-switch" onChange={this.enable_darkMode} checked={this.state.dark_mode} />
                 </div>
-                <div className="container-fluid">
+
+                <div className="container-fluid" style={{ backgroundColor: this.state.dark_mode ? 'rgb(107, 107, 107)' : 'rgb(247, 245, 245)' }}>
                     <div className="row">
-                        <div className="col-12">
+                        <div className="col-12 ">
                             <Chart field={this.state.value} start_time={this.state.start_time} end_time={this.state.end_time}
-                                output_type={this.state.output_type} start_val={this.state.start_val} end_val={this.state.end_val} />
+                                output_type={this.state.output_type} start_val={this.state.start_val} end_val={this.state.end_val}
+                                dark={this.state.dark_mode}
+                            />
                         </div>
                     </div>
                 </div>
+
             </>
         );
     }
