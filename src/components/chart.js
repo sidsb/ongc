@@ -89,7 +89,7 @@ export class Chart extends Component {
                         <div className="row ">
                             <div className="col-12 col-md-6">
                                 <div className="card">
-                                    <div className="card-body" style={{ backgroundColor: this.props.dark ? 'rgb(107, 107, 107)' : 'rgb(247, 245, 245)' }}>
+                                    <div className="card-body " style={{ backgroundColor: this.props.dark ? 'rgb(107, 107, 107)' : 'rgb(247, 245, 245)' }}>
                                         <Linechart labels={gr_labels} data={oil_data} datatype="Oil" field={this.props.field} dark={this.props.dark} ot={output_type} />
                                     </div>
                                 </div>

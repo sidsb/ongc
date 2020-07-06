@@ -169,6 +169,13 @@
   align-self: center;
 }
 
+.pie-modal {
+  height: 80%;
+  width: 100%;
+  align-items: center;
+  align-self: center;
+}
+
 .dark {
   background-color: rgb(54, 54, 54);
   color: #61dafb;
