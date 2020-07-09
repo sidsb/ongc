@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Line, Radar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 export default class Areachart extends Component {
 
@@ -12,7 +12,7 @@ export default class Areachart extends Component {
     render() {
         return (
 
-            <Radar data={{
+            <Line data={{
                 labels: this.props.labels,
                 datasets: [{
                     label: "Oil",
@@ -34,6 +34,11 @@ export default class Areachart extends Component {
                         text: "Data in Field:" + (parseInt(this.props.field) + 1),
                         fontSize: 25,
                     },
+                    scales: {
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
                 }}
             />
 

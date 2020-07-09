@@ -122,8 +122,8 @@ export class Chart extends Component {
                 </div>
                 <Modal isOpen={this.state.is_area_open} className="modal-dialog modal-lg" >
                     <div className="card" >
-                        <button type="button" className="btn btn-primary btn-block" data-dismiss="modal" aria-label="Close" onClick={this.area_Chart_Toggle}>
-                            &times;
+                        <button type="button" className="btn btn-danger" data-dismiss="modal" aria-label="Close" onClick={this.area_Chart_Toggle}>
+                            Close
                         </button>
                         <div className="area">
                             <Areachart labels={gr_labels} oildata={oil_data} waterdata={water_data} field={this.props.field} />

@@ -79,8 +79,8 @@ export default class Linechart extends Component {
                 />
                 <Modal isOpen={this.state.modalClick} className="modal-dialog modal-lg" >
                     <div className="card" >
-                        <button type="button" className="btn btn-primary btn-block" data-dismiss="modal" aria-label="Close" onClick={this.modal_Show}>
-                            &times;
+                        <button type="button" className="btn btn-danger" data-dismiss="modal" aria-label="Close" onClick={this.modal_Show}>
+                            Close
                         </button>
                         <div className="pie-modal">
                             <Line data={{
