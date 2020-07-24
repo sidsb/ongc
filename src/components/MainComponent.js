@@ -97,7 +97,7 @@ export default class Main extends React.Component {
                     </div>
                     <div className="btn-group user_ip_item">
                         <button type="button" className="btn btn-primary">Derived Output</button>
-                        <button type="button" className="btn btn-danger" value="1" onClick={this.output_type}>Normal</button>
+                        <button type="button" className="btn btn-info" value="1" onClick={this.output_type}>Normal</button>
                         <button type="button" className="btn btn-secondary" value="2" onClick={this.output_type}>*10</button>
                         <button type="button" className="btn btn-success" value="3" onClick={this.output_type}>log</button>
                     </div>
